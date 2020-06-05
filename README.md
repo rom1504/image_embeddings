@@ -10,8 +10,8 @@ Why this repo ? Embeddings are a widely used technique that is well known in sci
 
 ## Tasks
 
-[ ] simple downloader in python
-[ ] simple inference in python using https://github.com/qubvel/efficientnet
-[ ] build python basic knn example using https://github.com/facebookresearch/faiss
-[ ] build basic ui using lit element and some brute force knn to show what it does, put in github pages
-[ ] use to illustrate embeddings blogpost
+* [ ] simple downloader in python
+* [ ] simple inference in python using https://github.com/qubvel/efficientnet
+* [ ] build python basic knn example using https://github.com/facebookresearch/faiss
+* [ ] build basic ui using lit element and some brute force knn to show what it does, put in github pages
+* [ ] use to illustrate embeddings blogpost
