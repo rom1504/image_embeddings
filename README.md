@@ -1,6 +1,6 @@
-# image-embeddings
-[![pypi](https://img.shields.io/pypi/v/image-embeddings.svg)](https://pypi.python.org/pypi/image-embeddings)
-[![ci](https://github.com/rom1504/image-embeddings/workflows/Continuous%20integration/badge.svg)](https://github.com/rom1504/image-embeddings/actions?query=workflow%3A%22Continuous+integration%22)
+# image_embeddings
+[![pypi](https://img.shields.io/pypi/v/image_embeddings.svg)](https://pypi.python.org/pypi/image_embeddings)
+[![ci](https://github.com/rom1504/image_embeddings/workflows/Continuous%20integration/badge.svg)](https://github.com/rom1504/image_embeddings/actions?query=workflow%3A%22Continuous+integration%22)
 
 
 Using efficientnet to provide embeddings for retrieval.
@@ -28,24 +28,24 @@ Make sure you use `python>=3.6` and an up-to-date version of `pip` and
     python --version
     pip install -U pip setuptools
 
-It is recommended to install `image-embeddings` in a new virtual environment. For
+It is recommended to install `image_embeddings` in a new virtual environment. For
 example
 
     python3 -m venv image_embeddings_env
     source image_embeddings_env/bin/activate
     pip install -U pip setuptools
-    pip install image-embeddings
+    pip install image_embeddings
 
 ## Using Pip
 
-    pip install image-embeddings
+    pip install image_embeddings
 
 ## From Source
 
-First, clone the `image-embeddings` repo on your local machine with
+First, clone the `image_embeddings` repo on your local machine with
 
-    git clone https://github.com/rom1504/image-embeddings.git
-    cd image-embeddings
+    git clone https://github.com/rom1504/image_embeddings.git
+    cd image_embeddings
     make install
 
 To install development tools and test requirements, run

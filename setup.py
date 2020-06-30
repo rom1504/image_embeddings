@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     # Run setup
     setuptools.setup(
-        name="image-embeddings",
+        name="image_embeddings",
         author=metadata["author"],
         version=metadata["version"],
         install_requires=[
