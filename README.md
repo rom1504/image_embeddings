@@ -1,6 +1,7 @@
 # image-embeddings
-![pypi](https://img.shields.io/pypi/v/image-embeddings.svg)
-![ci](https://github.com/rom1504/image-embeddings/workflows/Continuous%20integration/badge.svg)
+[![pypi](https://img.shields.io/pypi/v/image-embeddings.svg)](https://pypi.python.org/pypi/image-embeddings)
+[![ci](https://github.com/rom1504/image-embeddings/workflows/Continuous%20integration/badge.svg)](https://github.com/rom1504/image-embeddings/actions?query=workflow%3A%22Continuous+integration%22)
+
 
 Using efficientnet to provide embeddings for retrieval.
 
