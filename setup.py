@@ -34,9 +34,9 @@ if __name__ == "__main__":
         packages=setuptools.find_packages(),
         description=long_description.split("\n")[0],
         long_description=long_description,
-        long_description_content_type="text/x-markdown",
+        long_description_content_type="text/markdown",
         classifiers=[
-            "License :: OSI Approved :: MIT",
+            "License :: OSI Approved :: MIT License",
             "Operating System :: OS Independent",
             "Programming Language :: Python :: 3",
             "Programming Language :: Python :: 3.6",
