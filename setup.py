@@ -11,7 +11,7 @@ if __name__ == "__main__":
         metadata = dict(re.findall(r'__([a-z]+)__\s*=\s*"([^"]+)"', file.read()))
 
     # Read description from README
-    with Path(Path(__file__).parent, "docs", "README.rst").open(encoding="utf-8") as file:
+    with Path(Path(__file__).parent, "README.md").open(encoding="utf-8") as file:
         long_description = file.read()
 
     # Run setup
