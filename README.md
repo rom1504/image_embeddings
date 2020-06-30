@@ -1,4 +1,7 @@
 # image-embeddings
+![pypi](https://img.shields.io/pypi/v/image-embeddings.svg)
+![ci](https://github.com/rom1504/image-embeddings/workflows/Continuous%20integration/badge.svg)
+
 Using efficientnet to provide embeddings for retrieval.
 
 Why this repo ? Embeddings are a widely used technique that is well known in scientific circles. But it seems to be underused and not very well known for most engineers. I want to show how easy it is to represent things as embeddings, and how many application this unlocks.
