@@ -27,6 +27,8 @@ if __name__ == "__main__":
             "tensorflow>=2.2",
             "tensorflow_datasets",
             "fire",
+            "efficientnet",
+            "faiss-cpu"
         ],
         tests_require=["pytest", "black"],
         dependency_links=[],

@@ -4,3 +4,5 @@ faiss-cpu==1.6.1
 numpy
 tensorflow_datasets
 fire
+pandas
+pyarrow
