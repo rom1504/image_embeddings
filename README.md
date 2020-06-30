@@ -12,6 +12,12 @@ Why this repo ? Embeddings are a widely used technique that is well known in sci
 2. run inference on them to get embeddings
 3. simple knn example, to understand what's the point : click on some pictures and see KNN
 
+## Example workflow
+
+1. run `python image_embeddings/cli/tf_datasets_to_files.py --output_folder=tf_flower_images`, this will retrieve the image files from https://www.tensorflow.org/datasets/catalog/tf_flowers (but you can also pick any other dataset)
+2. run the inference
+3. run the knn
+
 # Installation
 
 ## Prerequisites
