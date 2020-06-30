@@ -31,6 +31,7 @@ if __name__ == "__main__":
         tests_require=["pytest", "black"],
         dependency_links=[],
         data_files=[(".", ["requirements.txt", "README.md"])],
+        entry_points={"console_scripts": ["image_embeddings = image_embeddings.cli.main:main"]},
         packages=setuptools.find_packages(),
         description=long_description.split("\n")[0],
         long_description=long_description,

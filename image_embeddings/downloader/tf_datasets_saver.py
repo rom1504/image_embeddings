@@ -94,3 +94,13 @@ def save_examples(ds_info, ds, num_examples=10, folder=".", image_key=None):
         else:
             label_str = ""
         im.save(f"{folder}/image_{label_str}_{i}.jpeg")
+
+
+def save_examples_to_folder(output_folder, dataset="tf_flowers"):
+    logging.basicConfig(level=logging.INFO)
+    logging.getLogger("tensorflow").handlers = []
+
+    ds, ds_info = tfds.load(dataset, split="train", with_info=True)
+    Path(output_folder).mkdir(parents=True, exist_ok=True)
+
+    save_examples(ds_info, ds, 1000, output_folder)

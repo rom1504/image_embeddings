@@ -12,15 +12,26 @@ Why this repo ? Embeddings are a widely used technique that is well known in sci
 2. run inference on them to get embeddings
 3. simple knn example, to understand what's the point : click on some pictures and see KNN
 
+## Simple Install
+
+Run `pip install image_embeddings`
+
 ## Example workflow
 
-1. run `python image_embeddings/cli/tf_datasets_to_files.py --output_folder=tf_flower_images`, this will retrieve the image files from https://www.tensorflow.org/datasets/catalog/tf_flowers (but you can also pick any other dataset)
+1. run `image_embeddings save_examples_to_folder --output_folder=tf_flower_images`, this will retrieve the image files from https://www.tensorflow.org/datasets/catalog/tf_flowers (but you can also pick any other dataset)
 2. run the inference
 3. run the knn
 
-# Installation
+## API
 
-## Prerequisites
+### image_embeddings.downloader.save_examples_to_folder(output_folder, dataset="tf_flowers")
+
+Save https://www.tensorflow.org/datasets/catalog/tf_flowers to folder
+Also works with other tf datasets
+
+## Advanced Installation
+
+### Prerequisites
 
 Make sure you use `python>=3.6` and an up-to-date version of `pip` and
 `setuptools`
@@ -36,11 +47,11 @@ example
     pip install -U pip setuptools
     pip install image_embeddings
 
-## Using Pip
+### Using Pip
 
     pip install image_embeddings
 
-## From Source
+### From Source
 
 First, clone the `image_embeddings` repo on your local machine with
 
@@ -52,7 +63,7 @@ To install development tools and test requirements, run
 
     make install-dev
 
-# Test
+## Test
 
 To run unit tests in your current environment, run
 
@@ -63,7 +74,7 @@ run
 
     make venv-lint-test
 
-# Lint
+## Lint
 
 To run `black --check`:
 
@@ -75,7 +86,7 @@ To auto-format the code using `black`
 
 ## Tasks
 
-* [ ] simple downloader in python
+* [x] simple downloader in python
 * [ ] simple inference in python using https://github.com/qubvel/efficientnet
 * [ ] build python basic knn example using https://github.com/facebookresearch/faiss
 * [ ] build basic ui using lit element and some brute force knn to show what it does, put in github pages
