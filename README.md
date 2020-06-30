@@ -25,9 +25,9 @@ It is recommended to install `image-embeddings` in a new virtual environment. Fo
 example
 
     python3 -m venv image_embeddings_env
-    source image_embeddings/bin/activate
+    source image_embeddings_env/bin/activate
     pip install -U pip setuptools
-    pip install image_embeddings
+    pip install image-embeddings
 
 ## Using Pip
 

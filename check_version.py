@@ -8,7 +8,7 @@ import subprocess
 
 if __name__ == "__main__":
     # Read package version
-    with Path("image-embeddings/version.py").open(encoding="utf-8") as file:
+    with Path("image_embeddings/version.py").open(encoding="utf-8") as file:
         metadata = dict(re.findall(r'__([a-z]+)__\s*=\s*"([^"]+)"', file.read()))
         version = metadata["version"]
 

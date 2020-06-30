@@ -6,10 +6,10 @@ install-dev: ## [Local development] Install test requirements
 	python -m pip install -r requirements-test.txt
 
 lint: ## [Local development] Run mypy, pylint and black
-	python -m black --check -l 120 image-embeddings
+	python -m black --check -l 120 image_embeddings
 
 test: ## [Local development] Run unit tests
-	python -m pytest -n 4 -v tests/unit
+	python -m pytest -v tests/unit
 
 black: ## [Local development] Auto-format python code using black
 	python -m black -l 120 .
