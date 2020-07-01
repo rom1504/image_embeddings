@@ -1,3 +1,7 @@
+## 1.1.2
+
+* Fix cli import
+
 ## 1.1.1
 
 * Fix deps
