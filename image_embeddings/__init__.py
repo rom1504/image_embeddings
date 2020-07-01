@@ -1,1 +1,2 @@
 import image_embeddings.downloader
+import image_embeddings.cli
