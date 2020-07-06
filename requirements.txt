@@ -1,6 +1,6 @@
 tensorflow>=2.2,<3
 efficientnet==1.1.0
-faiss-cpu==1.6.1
+faiss-cpu==1.6.3
 numpy
 tensorflow_datasets
 fire
