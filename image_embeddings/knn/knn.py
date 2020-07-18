@@ -5,6 +5,7 @@ from IPython.display import Image, display
 from ipywidgets import widgets, HBox, VBox
 import faiss
 import numpy as np
+import random
 
 
 def read_embeddings(path):
@@ -21,6 +22,16 @@ def build_index(emb):
     index = faiss.IndexFlatIP(d)
     index.add(xb)
     return index
+
+
+def random_search(path):
+    [id_to_name, name_to_id, embeddings] = read_embeddings(path)
+    index = build_index(embeddings)
+    p = random.randint(0, len(id_to_name) - 1)
+    print(id_to_name[p])
+    results = search(index, id_to_name, embeddings[p])
+    for e in results:
+        print(f"{e[0]:.2f} {e[1]}")
 
 
 def search(index, id_to_name, emb, k=5):
