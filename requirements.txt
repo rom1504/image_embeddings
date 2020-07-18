@@ -6,3 +6,4 @@ tensorflow_datasets
 fire
 pandas
 pyarrow
+dataclasses

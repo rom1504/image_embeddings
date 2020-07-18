@@ -29,6 +29,7 @@ if __name__ == "__main__":
             "fire",
             "efficientnet",
             "faiss-cpu-noavx2",
+            "dataclasses",
         ],
         tests_require=["pytest", "black"],
         dependency_links=[],
