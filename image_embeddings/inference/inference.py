@@ -20,26 +20,20 @@ def _bytes_feature(value):
 
 
 def serialize_example(image, image_name):
-    feature = {
-        'image_name': _bytes_feature(image_name),
-        'image': _bytes_feature(image)
-    }
+    feature = {"image_name": _bytes_feature(image_name), "image": _bytes_feature(image)}
 
     example_proto = tf.train.Example(features=tf.train.Features(feature=feature))
     return example_proto.SerializeToString()
 
 
 def tf_serialize_example(image, image_name):
-    tf_string = tf.py_function(
-        serialize_example,
-        (image, image_name),
-        tf.string)
+    tf_string = tf.py_function(serialize_example, (image, image_name), tf.string)
     return tf.reshape(tf_string, ())
 
 
 def process_path(file_path):
-    parts = tf.strings.split(file_path, '/')
-    image_name = tf.strings.split(parts[-1], '.')[0]
+    parts = tf.strings.split(file_path, "/")
+    image_name = tf.strings.split(parts[-1], ".")[0]
     raw = tf.io.read_file(file_path)
     return raw, image_name
 
@@ -60,8 +54,8 @@ def image_files_to_tfrecords(list_ds, output_folder, num_shard):
 
 
 feature_description = {
-    'image_name': tf.io.FixedLenFeature([], tf.string),
-    'image': tf.io.FixedLenFeature([], tf.string)
+    "image_name": tf.io.FixedLenFeature([], tf.string),
+    "image": tf.io.FixedLenFeature([], tf.string),
 }
 
 
@@ -70,8 +64,8 @@ def _parse_function(example_proto):
 
 
 def preprocess_image(d):
-    image_name = d['image_name']
-    raw = d['image']
+    image_name = d["image_name"]
+    raw = d["image"]
     image = tf.image.decode_jpeg(raw)
     image = tf.image.convert_image_dtype(image, tf.float32)
 
@@ -81,40 +75,44 @@ def preprocess_image(d):
 def read_tfrecord(filename):
     filenames = [filename]
     raw_dataset = tf.data.TFRecordDataset(filenames)
-    return raw_dataset \
-        .map(_parse_function, num_parallel_calls=tf.data.experimental.AUTOTUNE) \
-        .map(preprocess_image, num_parallel_calls=tf.data.experimental.AUTOTUNE) \
+    return (
+        raw_dataset.map(_parse_function, num_parallel_calls=tf.data.experimental.AUTOTUNE)
+        .map(preprocess_image, num_parallel_calls=tf.data.experimental.AUTOTUNE)
         .apply(tf.data.experimental.ignore_errors())
+    )
 
 
 def tfrecords_to_write_embeddings(tfrecords_folder, output_folder, model, batch_size):
-    tfrecords = [f.numpy().decode("utf-8") for f in \
-                 tf.data.Dataset.list_files(tfrecords_folder + "/*.tfrecord", shuffle=False)]
+    tfrecords = [
+        f.numpy().decode("utf-8") for f in tf.data.Dataset.list_files(tfrecords_folder + "/*.tfrecord", shuffle=False)
+    ]
     start = time.time()
     for shard_id, tfrecord in enumerate(tfrecords):
         shard = read_tfrecord(tfrecord)
         embeddings = images_to_embeddings(model, shard, batch_size)
         print("")
         print("Shard " + str(shard_id) + " done after " + str(int(time.time() - start)) + "s")
-        save_embeddings_ds_to_parquet(embeddings, shard,
-                                      output_folder + "/part-" + "{:03d}".format(shard_id) + ".parquet")
+        save_embeddings_ds_to_parquet(
+            embeddings, shard, output_folder + "/part-" + "{:03d}".format(shard_id) + ".parquet"
+        )
         print("Shard " + str(shard_id) + " saved after " + str(int(time.time() - start)) + "s")
 
 
 def list_files(images_path):
-    return tf.data.Dataset.list_files(images_path + '/*', shuffle=False).cache()
+    return tf.data.Dataset.list_files(images_path + "/*", shuffle=False).cache()
 
 
 def process_path(file_path):
-    parts = tf.strings.split(file_path, '/')
-    image_name = tf.strings.split(parts[-1], '.')[0]
+    parts = tf.strings.split(file_path, "/")
+    image_name = tf.strings.split(parts[-1], ".")[0]
     raw = tf.io.read_file(file_path)
     return raw, image_name
 
 
 def read_data_from_files(list_ds):
-    return list_ds.map(process_path,
-                       num_parallel_calls=tf.data.experimental.AUTOTUNE)#.apply(tf.data.experimental.ignore_errors())
+    return list_ds.map(
+        process_path, num_parallel_calls=tf.data.experimental.AUTOTUNE
+    )  # .apply(tf.data.experimental.ignore_errors())
 
 
 def images_to_embeddings(model, dataset, batch_size):
@@ -135,16 +133,16 @@ def compute_save_embeddings(list_ds, folder, num_shards, model, batch_size):
         shard = read_data_from_files(shard_list)
         embeddings = images_to_embeddings(model, shard, batch_size)
         print("Shard " + str(shard_id) + " done after " + str(int(time.time() - start)) + "s")
-        save_embeddings_ds_to_parquet(embeddings, shard,
-                                      folder + "/part-" + "{:03d}".format(shard_id) + ".parquet")
+        save_embeddings_ds_to_parquet(embeddings, shard, folder + "/part-" + "{:03d}".format(shard_id) + ".parquet")
         print("Shard " + str(shard_id) + " saved after " + str(int(time.time() - start)) + "s")
     print("Total time : " + str(int(time.time() - start)))
 
 
 def run_inference_from_files(image_folder, output_folder, num_shards=100, batch_size=1000):
-    model = EfficientNetB0(weights='imagenet', include_top=False, pooling="avg")
+    model = EfficientNetB0(weights="imagenet", include_top=False, pooling="avg")
     list_ds = list_files(image_folder)
     compute_save_embeddings(list_ds, output_folder, num_shards, model, batch_size)
+
 
 def write_tfrecord(image_folder, output_folder, num_shards=100):
     Path(output_folder).mkdir(parents=True, exist_ok=True)
@@ -154,6 +152,5 @@ def write_tfrecord(image_folder, output_folder, num_shards=100):
 
 def run_inference(tfrecords_folder, output_folder, batch_size=1000):
     Path(output_folder).mkdir(parents=True, exist_ok=True)
-    model = EfficientNetB0(weights='imagenet', include_top=False, pooling="avg")
+    model = EfficientNetB0(weights="imagenet", include_top=False, pooling="avg")
     tfrecords_to_write_embeddings(tfrecords_folder, output_folder, model, batch_size)
-

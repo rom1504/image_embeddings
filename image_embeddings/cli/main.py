@@ -7,8 +7,10 @@ def main():
     """Main entry point"""
     logging.basicConfig(level=logging.INFO)
     logging.getLogger("tensorflow").handlers = []
-    fire.Fire({
-        "save_examples_to_folder": save_examples_to_folder,
-        "write_tfrecord": write_tfrecord,
-        "run_inference" : run_inference
-    })
+    fire.Fire(
+        {
+            "save_examples_to_folder": save_examples_to_folder,
+            "write_tfrecord": write_tfrecord,
+            "run_inference": run_inference,
+        }
+    )

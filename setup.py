@@ -28,7 +28,7 @@ if __name__ == "__main__":
             "tensorflow_datasets",
             "fire",
             "efficientnet",
-            "faiss-cpu"
+            "faiss-cpu-noavx2",
         ],
         tests_require=["pytest", "black"],
         dependency_links=[],
