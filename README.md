@@ -20,7 +20,7 @@ Run `pip install image_embeddings`
 
 ## Example workflow
 
-1. run `image_embeddings save_examples_to_folder --output_folder=tf_flower_images`, this will retrieve the image files from https://www.tensorflow.org/datasets/catalog/tf_flowers (but you can also pick any other dataset)
+1. run `image_embeddings save_examples_to_folder --images_count=1000 --output_folder=tf_flower_images`, this will retrieve 1000 image files from https://www.tensorflow.org/datasets/catalog/tf_flowers (but you can also pick any other dataset)
 2. produce tf records with `image_embeddings write_tfrecord --image_folder=tf_flower_images --output_folder=tf_flower_tf_records --shards=10`
 3. run the inference with `image_embeddings run_inference --tfrecords_folder=tf_flower_tf_records --output_folder=tf_flower_embeddings`
 4. run a random knn search on them `image_embeddings random_search --path=tf_flower_embeddings`
@@ -47,7 +47,7 @@ The [From scratch](notebooks/from_scratch.ipynb) notebook provides an explanatio
 
 Downloader from tensorflow datasets. Any other set of images could be used instead
 
-#### image_embeddings.downloader.save_examples_to_folder(output_folder, dataset="tf_flowers")
+#### image_embeddings.downloader.save_examples_to_folder(output_folder, images_count=1000, dataset="tf_flowers")
 
 Save https://www.tensorflow.org/datasets/catalog/tf_flowers to folder
 Also works with other tf datasets
