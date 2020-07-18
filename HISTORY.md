@@ -1,3 +1,7 @@
+## 1.3.1
+
+* fix fashion mnist
+
 ## 1.3.0
 
 * add number of example param in downloader
