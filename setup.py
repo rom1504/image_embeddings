@@ -30,6 +30,8 @@ if __name__ == "__main__":
             "efficientnet",
             "faiss-cpu-noavx2",
             "dataclasses",
+            "ipython",
+            "ipywidgets",
         ],
         tests_require=["pytest", "black"],
         dependency_links=[],
