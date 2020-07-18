@@ -37,6 +37,8 @@ image_roses_261
 
 Explore the [Simple notebook](notebooks/using_the_lib.ipynb) for more details.
 
+You can try it locally or [try it in colab](https://colab.research.google.com/github/rom1504/image_embeddings/blob/master/notebooks/using_the_lib.ipynb)
+
 The [From scratch](notebooks/from_scratch.ipynb) notebook provides an explanation on how to build this from scratch.
 
 ## API
