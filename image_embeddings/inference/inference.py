@@ -138,13 +138,13 @@ def compute_save_embeddings(list_ds, folder, num_shards, model, batch_size):
     print("Total time : " + str(int(time.time() - start)))
 
 
-def run_inference_from_files(image_folder, output_folder, num_shards=100, batch_size=1000):
+def run_inference_from_files(image_folder, output_folder, num_shards=10, batch_size=1000):
     model = EfficientNetB0(weights="imagenet", include_top=False, pooling="avg")
     list_ds = list_files(image_folder)
     compute_save_embeddings(list_ds, output_folder, num_shards, model, batch_size)
 
 
-def write_tfrecord(image_folder, output_folder, num_shards=100):
+def write_tfrecord(image_folder, output_folder, num_shards=10):
     Path(output_folder).mkdir(parents=True, exist_ok=True)
     list_ds = list_files(image_folder)
     image_files_to_tfrecords(list_ds, output_folder, num_shards)
