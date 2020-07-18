@@ -87,10 +87,9 @@ def save_examples(ds_info, ds, num_examples=10, folder=".", image_key=None):
             image = image.reshape(image.shape[:2])
         image = center_crop_and_resize(image, 224).astype(np.uint8)
         im = Image.fromarray(image)
-        # Plot the label
         if label_key:
             label = ex[label_key]
-            label_str = ds_info.features[label_key].int2str(label)
+            label_str = ds_info.features[label_key].int2str(label).replace("/", "_")
         else:
             label_str = ""
         im.save(f"{folder}/image_{label_str}_{i}.jpeg")
