@@ -1,3 +1,7 @@
+## 1.3.0
+
+* add number of example param in downloader
+
 ## 1.2.1
 
 * add missing dependencies
