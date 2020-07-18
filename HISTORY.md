@@ -1,3 +1,7 @@
+## 1.2.1
+
+* add missing dependencies
+
 ## 1.2.0
 
 Full features
