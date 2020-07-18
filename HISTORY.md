@@ -1,3 +1,13 @@
+## 1.2.0
+
+Full features
+
+* tf record
+* inference
+* knn
+
+Both in cli and api
+
 ## 1.1.3
 
 * Cli init
