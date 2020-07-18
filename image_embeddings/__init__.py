@@ -1,2 +1,4 @@
 import image_embeddings.downloader
+import image_embeddings.inference
+import image_embeddings.knn
 import image_embeddings.cli

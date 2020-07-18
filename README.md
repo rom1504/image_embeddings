@@ -7,6 +7,8 @@ Using efficientnet to provide embeddings for retrieval.
 
 Why this repo ? Embeddings are a widely used technique that is well known in scientific circles. But it seems to be underused and not very well known for most engineers. I want to show how easy it is to represent things as embeddings, and how many application this unlocks.
 
+![knn example](knn_example.png)
+
 ## Workflow
 1. download some pictures
 2. run inference on them to get embeddings
@@ -19,15 +21,78 @@ Run `pip install image_embeddings`
 ## Example workflow
 
 1. run `image_embeddings save_examples_to_folder --output_folder=tf_flower_images`, this will retrieve the image files from https://www.tensorflow.org/datasets/catalog/tf_flowers (but you can also pick any other dataset)
-2. run the inference
-3. run the knn
+2. produce tf records with `image_embeddings write_tfrecord --image_folder=tf_flower_images --output_folder=tf_flower_tf_records --shards=10`
+3. run the inference with `image_embeddings run_inference --tfrecords_folder=tf_flower_tf_records --output_folder=tf_flower_embeddings`
+4. run a random knn search on them `image_embeddings random_search --path=tf_flower_embeddings`
+
+```
+$ image_embeddings random_search --path=tf_flower_embeddings
+image_roses_261
+160.83 image_roses_261
+114.36 image_roses_118
+102.77 image_roses_537
+92.95 image_roses_659
+88.49 image_roses_197
+```
+
+Explore the [Simple notebook](notebooks/using_the_lib.ipynb) for more details.
+
+The [From scratch](notebooks/from_scratch.ipynb) notebook provides an explanation on how to build this from scratch.
 
 ## API
 
-### image_embeddings.downloader.save_examples_to_folder(output_folder, dataset="tf_flowers")
+### image_embeddings.downloader
+
+Downloader from tensorflow datasets. Any other set of images could be used instead
+
+#### image_embeddings.downloader.save_examples_to_folder(output_folder, dataset="tf_flowers")
 
 Save https://www.tensorflow.org/datasets/catalog/tf_flowers to folder
 Also works with other tf datasets
+
+### image_embeddings.inference
+
+Create tf recors from images files, and apply inference with an efficientnet model. Other models could be used.
+
+#### image_embeddings.inference.write_tfrecord(image_folder, output_folder, num_shards=100)
+
+Write tf records from an image folders
+
+#### image_embeddings.inference.run_inference(tfrecords_folder, output_folder, batch_size=1000)
+
+Run inference on provided tf records and save to folder the embeddings
+
+### image_embeddings.knn
+
+Convenience methods to read, build indices and apply search on them. These methods are provided as example.
+Use [faiss](https://github.com/facebookresearch/faiss) directly for bigger datasets.
+
+#### image_embeddings.knn.read_embeddings(path)
+
+Run embeddings from path and return a tuple with 
+* embeddings as a numpy matrix
+* an id to name dictionary
+* a name to id dictionary
+
+#### image_embeddings.knn.build_index(emb)
+
+Build a simple faiss inner product index using the provided matrix of embeddings
+
+#### image_embeddings.knn.search(index, id_to_name, emb, k=5)
+
+Search the query embeddings and return an array of (distance, name) images
+
+#### image_embeddings.knn.display_picture(image_path, image_name)
+
+Display one picture from the given path and image name in jupyter
+
+#### image_embeddings.knn.display_results(image_path, results)
+
+Display the results from search method
+
+#### image_embeddings.knn.random_search(path)
+
+Load the embeddings, apply a random search on them and display the result
 
 ## Advanced Installation
 
@@ -87,7 +152,7 @@ To auto-format the code using `black`
 ## Tasks
 
 * [x] simple downloader in python
-* [ ] simple inference in python using https://github.com/qubvel/efficientnet
-* [ ] build python basic knn example using https://github.com/facebookresearch/faiss
+* [x] simple inference in python using https://github.com/qubvel/efficientnet
+* [x] build python basic knn example using https://github.com/facebookresearch/faiss
 * [ ] build basic ui using lit element and some brute force knn to show what it does, put in github pages
 * [ ] use to illustrate embeddings blogpost
