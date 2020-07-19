@@ -6,6 +6,8 @@ from ipywidgets import widgets, HBox, VBox
 import faiss
 import numpy as np
 import random
+import json
+from pathlib import Path
 
 
 def read_embeddings(path):
@@ -14,6 +16,17 @@ def read_embeddings(path):
     name_to_id = {v: k for k, v in id_to_name.items()}
     embgood = np.stack(emb["embedding"].to_numpy())
     return [id_to_name, name_to_id, embgood]
+
+
+def embeddings_to_numpy(input_path, output_path):
+    emb = pq.read_table(input_path).to_pandas()
+
+    Path(output_path).mkdir(parents=True, exist_ok=True)
+    id_name = [{"id": k, "name": v.decode("utf-8")} for k, v in enumerate(list(emb["image_name"]))]
+    json.dump(id_name, open(output_path + "/id_name.json", "w"))
+
+    emb = np.stack(emb["embedding"].to_numpy())
+    np.save(open(output_path + "/embedding.npy", "wb"), emb)
 
 
 def build_index(emb):

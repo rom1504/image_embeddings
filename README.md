@@ -25,6 +25,8 @@ Run `pip install image_embeddings`
 3. run the inference with `image_embeddings run_inference --tfrecords_folder=tf_flower_tf_records --output_folder=tf_flower_embeddings`
 4. run a random knn search on them `image_embeddings random_search --path=tf_flower_embeddings`
 
+Optionally if you want to use the embeddings in numpy (in other languages), run `image_embeddings embeddings_to_numpy --input_path=tf_flower_embeddings --output_path=tf_flower_numpy`
+
 ```
 $ image_embeddings random_search --path=tf_flower_embeddings
 image_roses_261
@@ -95,6 +97,14 @@ Display the results from search method
 #### image_embeddings.knn.random_search(path)
 
 Load the embeddings, apply a random search on them and display the result
+
+#### image_embeddings.knn.embeddings_to_numpy(input_path, output_folder)
+
+Load the embeddings from the input folder as parquet and save them as
+* json for the id -> name mapping
+* numpy for the embeddings
+
+Particularly useful to read the embeddings from other languages
 
 ## Advanced Installation
 

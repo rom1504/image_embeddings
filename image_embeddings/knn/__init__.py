@@ -5,4 +5,5 @@ from image_embeddings.knn.knn import (
     display_results,
     search,
     random_search,
+    embeddings_to_numpy,
 )
