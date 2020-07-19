@@ -5,7 +5,7 @@
 
 Using efficientnet to provide embeddings for retrieval.
 
-Why this repo ? Embeddings are a widely used technique that is well known in scientific circles. But it seems to be underused and not very well known for most engineers. I want to show how easy it is to represent things as embeddings, and how many application this unlocks.
+Why this repo ? Embeddings are a widely used technique that is well known in scientific circles. But it seems to be underused and not very well known for most engineers. I want to show how easy it is to represent things as embeddings, and how many application this unlocks. Checkout the [demo](https://rom1504.github.io/image_embeddings/) first!
 
 ![knn example](knn_example.png)
 
@@ -25,7 +25,7 @@ Run `pip install image_embeddings`
 3. run the inference with `image_embeddings run_inference --tfrecords_folder=tf_flower_tf_records --output_folder=tf_flower_embeddings`
 4. run a random knn search on them `image_embeddings random_search --path=tf_flower_embeddings`
 
-Optionally if you want to use the embeddings in numpy (in other languages), run `image_embeddings embeddings_to_numpy --input_path=tf_flower_embeddings --output_path=tf_flower_numpy`
+Optionally if you want to use the embeddings in numpy (in other languages), run `image_embeddings embeddings_to_numpy --input_path=tf_flower_embeddings --output_path=tf_flower_numpy`. In particular this can be used in the [web demo](https://github.com/rom1504/image_embeddings/tree/web)
 
 ```
 $ image_embeddings random_search --path=tf_flower_embeddings
@@ -166,5 +166,5 @@ To auto-format the code using `black`
 * [x] simple downloader in python
 * [x] simple inference in python using https://github.com/qubvel/efficientnet
 * [x] build python basic knn example using https://github.com/facebookresearch/faiss
-* [ ] build basic ui using lit element and some brute force knn to show what it does, put in github pages
+* [x] build basic ui using lit element and some brute force knn to show what it does, put in github pages
 * [ ] use to illustrate embeddings blogpost
