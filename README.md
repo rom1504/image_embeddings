@@ -3,7 +3,7 @@
 [![ci](https://github.com/rom1504/image_embeddings/workflows/Continuous%20integration/badge.svg)](https://github.com/rom1504/image_embeddings/actions?query=workflow%3A%22Continuous+integration%22)
 
 
-Using efficientnet to provide embeddings for retrieval.
+Using efficientnet to provide embeddings for retrieval. Read the blog post at https://medium.com/@rom1504/image-embeddings-ed1b194d113e
 
 Why this repo ? Embeddings are a widely used technique that is well known in scientific circles. But it seems to be underused and not very well known for most engineers. I want to show how easy it is to represent things as embeddings, and how many application this unlocks. Checkout the [demo](https://rom1504.github.io/image_embeddings/) first!
 
@@ -167,4 +167,4 @@ To auto-format the code using `black`
 * [x] simple inference in python using https://github.com/qubvel/efficientnet
 * [x] build python basic knn example using https://github.com/facebookresearch/faiss
 * [x] build basic ui using lit element and some brute force knn to show what it does, put in github pages
-* [ ] use to illustrate embeddings blogpost
+* [x] use to illustrate embeddings blogpost
