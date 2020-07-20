@@ -1,3 +1,7 @@
+## 1.4.0
+
+* add feature to save embeddings as numpy
+
 ## 1.3.1
 
 * fix fashion mnist
