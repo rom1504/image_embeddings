@@ -7,5 +7,5 @@ fire
 pandas
 pyarrow
 dataclasses
-ipython==7.16.1
+ipython==7.16.3
 ipywidgets==7.5.1
